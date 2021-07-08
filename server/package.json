@@ -1,0 +1,25 @@
+{
+  "name": "restaurant-api",
+  "version": "1.0.0",
+  "description": "Restaurant TEST API",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Héctor Antón",
+  "license": "ISC",
+  "dependencies": {
+    "cloudinary": "^1.26.2",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.2",
+    "morgan": "^1.10.0",
+    "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
