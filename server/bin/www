@@ -1,8 +1,9 @@
 const http = require('http')
 
-let app = require('../app')
+const app = require('../app')
 
-let server = http.createServer(app)
+const server = http.createServer(app)
+
 
 server.on('error', error => {
   if (error.syscall !== 'listen') { throw error }
