@@ -8,6 +8,7 @@ require('./config/mongoose.config')
 const express = require('express')
 const app = express()
 
+//Configurations
 require('./config/middleware.config')(app)
 require('./config/passport.config')(app)
 

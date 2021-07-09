@@ -13,6 +13,11 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
+    role: {
+        type: String,
+        enum: ['VISITOR', 'ADMIN'],
+        default: 'VISITOR'
+    },
     favouriteRestaurants:[{
         type: Schema.Types.ObjectId,
         ref: 'Restaurant'

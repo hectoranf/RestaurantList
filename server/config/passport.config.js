@@ -9,6 +9,20 @@ const ExtractJWT = require('passport-jwt').ExtractJwt
 
 module.exports = app => {
     
+    passport.use('signup',
+        new localStrategy(
+            (username, password, next) => {
+
+                const salt = bcrypt.genSaltSync(bcryptSalt)
+                const hashPass = bcrypt.hashSync(password, salt)
+                
+                User.create({ username, password: hashPass})
+                    .then(user => next(null, user))
+                    .catch(err => next(new Error(err)))
+            }
+        )
+    )
+
     passport.use('login',
         new localStrategy(
             (username, password, next) => {
@@ -24,21 +38,6 @@ module.exports = app => {
         )
     )
 
-    passport.use('signup',
-        new localStrategy(
-            (username, password, next) => {
-
-                const salt = bcrypt.genSaltSync(bcryptSalt)
-                const hashPass = bcrypt.hashSync(password, salt)
-                
-                User.create({ username, password: hashPass})
-                    .then(user => next(null, user))
-                    .catch(err => next(new Error(err)))
-            }
-        )
-    )
-
-
     passport.use(
         new JWTstrategy({
                 secretOrKey: process.env.TOKEN_SECRET,
@@ -46,14 +45,13 @@ module.exports = app => {
             },
             async (token, next) => {
                 try {
-                    return next(null, token.user);
+                    return next(null, token.user)
                 } catch (error) {
-                    next(error);
+                    next(error)
                 }
             }
         )
-    );
-
-    
+    )
+ 
 }
 
