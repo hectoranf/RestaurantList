@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const RestaurantSchema = new Schema({
 
@@ -54,7 +54,8 @@ const RestaurantSchema = new Schema({
             required: true
         },
         date: {
-            type: Date
+            type: Date,
+            default: Date.now
         },
         rating: {
             type: Number,
@@ -70,8 +71,8 @@ const RestaurantSchema = new Schema({
 
 }, {
     timestamps: true,
-});
+})
 
-const Restaurant = mongoose.model('Restaurant', RestaurantSchema);
+const Restaurant = mongoose.model('Restaurant', RestaurantSchema)
 
-module.exports = Restaurant;
+module.exports = Restaurant
