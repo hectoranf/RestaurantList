@@ -10,25 +10,32 @@ const Home = ({ data }) => {
     <Layout>
       <div>
         <h1 className={styles.title}>
-          the <span className="green">amazing</span>
-          <br></br>restaurants<br></br>
-          <span className="green">amazing</span> list
+          the <span className="green amazing">amazing</span>
+          <br className={styles.invisible} />
+          restaurants
+          <br />
+          <span className="green amazing">amazing</span> list
         </h1>
         <section className={styles.restaurantsContainer}>
           {data.map((elm) => (
             <Link href={`/restaurant/${elm._id}`}>
               <article className={styles.restaurantItem} key={elm._id}>
                 <figure className={styles.restaurantImg}>
+                  <p className={styles.details}>More details</p>
                   <Image
                     priority
                     src={elm.image}
                     layout="fill"
                     objectFit="cover"
-                    objectPosition="top"
+                    objectPosition="center"
                     alt={elm.name}
+                    className={styles.greyscale}
                   />
                 </figure>
-                <a>{elm.name}</a>
+                <div className={styles.restaurantInfo}>
+                  <h4>{elm.name}</h4>
+                  <p className="white">{elm.neighborhood}</p>
+                </div>
               </article>
             </Link>
           ))}

@@ -12,6 +12,16 @@ body {
 .green {
   color: #a7bf2e;
 }
+.bold {
+  font-weight: 800;
+}
+.white {
+  color: #fdfcf7;
+}
+
+.small {
+  font-size: 0.8em;
+}
 
 a {
   color: inherit;
@@ -20,4 +30,40 @@ a {
 h1 {
   font-family: "merriweather", arial;
   font-size: 4em;
+  text-align: center;
+}
+
+h4 {
+  margin: 0px;
+  margin-top: 10px;
+  font-family: "merriweather", arial;
+}
+p {
+  margin: 0px;
+  margin-top: 5px;
+}
+
+.amazing {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+h1:hover .amazing {
+  opacity: 1;
+}
+
+.back-to-list {
+  position: relative;
+  bottom: 0px;
+  cursor: pointer;
+  border: 2px solid #a7bf2e;
+  background-color: rgba(47, 43, 50);
+  padding: 10px;
+  border-radius: 10px 10px 10px 10px;
+}
+
+@media (max-width: 992px) {
+  .amazing {
+    opacity: 1;
+  }
 }
