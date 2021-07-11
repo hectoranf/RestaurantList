@@ -1,10 +1,11 @@
 import { getAllRestaurantsIds, getOneRestaurant } from "../../lib/restaurants"
 import Head from "next/head"
 import Link from "next/link"
+import Layout from "../../components/layout"
 
 export default function RestaurantDetails({ details }) {
   return (
-    <>
+    <Layout>
       <Head>
         <title>{details.name}</title>
       </Head>
@@ -15,7 +16,7 @@ export default function RestaurantDetails({ details }) {
       <Link href="/">
         <a>← Back to home</a>
       </Link>
-    </>
+    </Layout>
   )
 }
 
