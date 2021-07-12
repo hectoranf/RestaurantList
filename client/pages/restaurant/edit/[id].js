@@ -114,7 +114,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getServerSideProps({ params }) {
+export async function getProps({ params }) {
   return await getOneRestaurant(params.id).then((res) => {
     return {
       props: {
