@@ -6,6 +6,7 @@ import { uploadImage } from "../../lib/files"
 import React, { useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
+import styles from "../../styles/restaurantForm.module.css"
 
 export default function newRestaurantForm() {
   const [state, setState] = useState({
@@ -52,14 +53,16 @@ export default function newRestaurantForm() {
   }
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>New restaurant</title>
       </Head>
-      <form onSubmit={handleSubmit}>
+      <h1 className={styles.title}>New restaurant</h1>
+      <form className="form-container" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Restaurant Name: </label>
           <input
+            className="input"
             name="name"
             value={state.name}
             type="text"
@@ -71,6 +74,7 @@ export default function newRestaurantForm() {
         <div className="form-group">
           <label>Neighborhood: </label>
           <input
+            className="input"
             name="neighborhood"
             type="text"
             onChange={handleInputChange}
@@ -81,6 +85,7 @@ export default function newRestaurantForm() {
         <div className="form-group">
           <label>Address: </label>
           <input
+            className="input"
             name="address"
             type="text"
             onChange={handleInputChange}
@@ -91,6 +96,7 @@ export default function newRestaurantForm() {
         <div className="form-group">
           <label>Cuisine Type: </label>
           <select
+            className="input"
             name="cuisine_type"
             value={state.cuisine_type}
             onChange={handleInputChange}
@@ -108,17 +114,22 @@ export default function newRestaurantForm() {
         <div className="form-group">
           <label>Image: </label>
           <input
+            className="input"
             name="image"
             type="file"
             onChange={handleFileUpload}
             required
           />
         </div>
-        <input type="submit" />
+        <div>
+          <input className="button" type="submit" />
+        </div>
+        <Link href="/">
+          <a className="green bold back-to-list">
+            ← Back to the restaurant list
+          </a>
+        </Link>
       </form>
-      <Link href="/">
-        <a className="green bold back-to-list">← Back to the restaurant list</a>
-      </Link>
-    </>
+    </Layout>
   )
 }

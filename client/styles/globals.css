@@ -54,12 +54,50 @@ h1:hover .amazing {
 
 .back-to-list {
   position: relative;
-  bottom: 0px;
+  top: 20px;
   cursor: pointer;
+  border: 2px solid #a7bf2e;
+  background-color: #2f2b32;
+  padding: 10px;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.form-group {
+  width: 50%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  margin: 5px 0px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.button {
+  cursor: pointer;
+  border: 2px solid #a7bf2e;
+  background-color: rgba(47, 43, 50);
+  padding: 12px;
+  border-radius: 10px 10px 10px 10px;
+  color: #a7bf2e;
+  font-weight: 600;
+  font-size: 1.3em;
+}
+.input {
   border: 2px solid #a7bf2e;
   background-color: rgba(47, 43, 50);
   padding: 10px;
   border-radius: 10px 10px 10px 10px;
+  color: #a7bf2e;
+}
+
+label {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 3px;
 }
 
 @media (max-width: 992px) {
