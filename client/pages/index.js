@@ -1,11 +1,17 @@
 import Head from "next/head"
+import Router from "next/router"
 import Layout from "../components/layout"
 import Image from "next/image"
 import styles from "../styles/Home.module.css"
-import { getAllRestaurants, getAllRestaurantsIds } from "../lib/restaurants"
+import { getAllRestaurants, deleteRestaurant } from "../lib/restaurants"
 import Link from "next/link"
 
 const Home = ({ data }) => {
+  const deleteClick = async (id) => {
+    deleteRestaurant(id)
+      .then((res) => Router.reload(window.location.pathname))
+      .catch((err) => console.log(err))
+  }
   return (
     <Layout>
       <div>
@@ -32,8 +38,8 @@ const Home = ({ data }) => {
             </article>
           </Link>
           {data.map((elm) => (
-            <Link href={`/restaurant/${elm._id}`} key={elm._id}>
-              <article className={styles.restaurantItem}>
+            <article className={styles.restaurantItem} key={elm._id}>
+              <Link href={`/restaurant/${elm._id}`}>
                 <figure className={styles.restaurantImg}>
                   <div className={styles.details}>More details</div>
                   <Image
@@ -46,21 +52,27 @@ const Home = ({ data }) => {
                     className={styles.greyscale}
                   />
                 </figure>
-                <article className={styles.restaurantInfo}>
-                  <h4>{elm.name}</h4>
-                  <div className="white">
-                    <Image
-                      priority
-                      src="/images/location.svg"
-                      height={18}
-                      width={20}
-                      alt="add icon"
-                    />
-                    {elm.neighborhood}
-                  </div>
-                </article>
+              </Link>
+              <article className={styles.restaurantInfo}>
+                <h4>{elm.name}</h4>
+                <div className="white">
+                  <Image
+                    priority
+                    src="/images/location.svg"
+                    height={18}
+                    width={20}
+                    alt="add icon"
+                  />
+                  {elm.neighborhood}
+                </div>
               </article>
-            </Link>
+              <button
+                onClick={() => deleteClick(elm._id)}
+                className={styles.deleteButton}
+              >
+                Delete
+              </button>
+            </article>
           ))}
         </section>
       </div>

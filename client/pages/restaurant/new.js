@@ -6,7 +6,6 @@ import { uploadImage } from "../../lib/files"
 import React, { useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
-import styles from "../../styles/restaurantForm.module.css"
 
 export default function newRestaurantForm() {
   const [state, setState] = useState({
@@ -57,7 +56,7 @@ export default function newRestaurantForm() {
       <Head>
         <title>New restaurant</title>
       </Head>
-      <h1 className={styles.title}>New restaurant</h1>
+      <h1>New restaurant</h1>
       <form className="form-container" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Restaurant Name: </label>

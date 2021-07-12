@@ -24,13 +24,13 @@
   align-items: center;
   justify-content: flex-start;
   padding: 10px 25px 20px 25px;
-  cursor: pointer;
 }
 
 .restaurantImg {
   position: relative;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .restaurantInfo {
@@ -43,7 +43,7 @@
   transition: all 0.4s ease;
 }
 
-.restaurantItem:hover .greyscale {
+.restaurantImg:hover .greyscale {
   filter: grayscale(1);
 }
 
@@ -68,7 +68,7 @@
 
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.restaurantItem:hover .details {
+.restaurantImg:hover .details {
   visibility: visible;
   opacity: 1;
 }
@@ -84,6 +84,18 @@
 .addRestaurant {
   width: 100%;
   text-align: center;
+}
+
+.deleteButton {
+  cursor: pointer;
+  border: 1px solid #a7bf2e;
+  background-color: #2f2b32;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fdfcf7;
+  font-weight: 600;
+  font-size: 0.8em;
 }
 
 /* medium */
