@@ -2,7 +2,7 @@ import axios from "axios"
 
 const handler = axios.create({
   // baseURL: `${process.env.REACT_APP_API_URL}/restaurants`,
-  baseURL: `http://localhost:5000/api/restaurants`,
+  baseURL: `https://restaurant-list-api.herokuapp.com/api/restaurants`,
   withCredentials: true,
 })
 

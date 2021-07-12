@@ -47,7 +47,11 @@ export default function newRestaurantForm() {
   const handleSubmit = (e) => {
     e.preventDefault()
     // createRestaurant(state)
-    if (!uploading) createNewRestaurant(state)
+    if (!uploading) {
+      createRestaurant(state)
+        .then((res) => router.push("/"))
+        .catch((err) => console.log(err))
+    }
   }
 
   return (

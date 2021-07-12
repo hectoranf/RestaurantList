@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const handler = axios.create({
-  baseURL: `http://localhost:5000/api/files`,
+  baseURL: `https://restaurant-list-api.herokuapp.com/api/files`,
   withCredentials: true,
 })
 
