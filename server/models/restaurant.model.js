@@ -1,78 +1,91 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const RestaurantSchema = new Schema({
-
+const RestaurantSchema = new Schema(
+  {
     id: {
-        type: Number
+      type: Number,
     },
     name: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     neighborhood: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     photograph: {
-        type: String,
-        trim: true
+      type: String,
+      trim: true,
     },
     address: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     latlng: {
-        lat: Number,
-        lng: Number
+      lat: Number,
+      lng: Number,
     },
     image: {
-        type: String,
-        required: true
+      type: String,
+      default:
+        "https://es.nycgo.com/images/venues/4829/thedutch29_sa_bar-room_sm__x_large.jpg",
+      required: true,
     },
     cuisine_type: {
-        type: String,
-        enum: ['Asian', 'Pizza', 'American', 'Mexican', 'Italian', 'Spanish', 'French', 'Other'],
-        required: true,
-        trim: true
+      type: String,
+      enum: [
+        "Asian",
+        "Pizza",
+        "American",
+        "Mexican",
+        "Italian",
+        "Spanish",
+        "French",
+        "Other",
+      ],
+      required: true,
+      trim: true,
     },
     operating_hours: {
-        Monday: String,
-        Tuesday: String,
-        Wednesday: String,
-        Thursday: String,
-        Friday: String,
-        Saturday: String,
-        Sunday: String
+      Monday: String,
+      Tuesday: String,
+      Wednesday: String,
+      Thursday: String,
+      Friday: String,
+      Saturday: String,
+      Sunday: String,
     },
-    reviews: [{
+    reviews: [
+      {
         name: {
-            type: String,
-            required: true
+          type: String,
+          required: true,
         },
         date: {
-            type: Date,
-            default: Date.now
+          type: Date,
+          default: Date.now,
         },
         rating: {
-            type: Number,
-            required: true
+          type: Number,
+          required: true,
         },
         comments: {
-            type: String,
-            required: true,
-            trim: true
-        }
-    }],
-
-
-}, {
+          type: String,
+          required: true,
+          trim: true,
+        },
+      },
+    ],
+  },
+  {
     timestamps: true,
-})
+  }
+)
 
-const Restaurant = mongoose.model('Restaurant', RestaurantSchema)
+const Restaurant = mongoose.model("Restaurant", RestaurantSchema)
 
 module.exports = Restaurant

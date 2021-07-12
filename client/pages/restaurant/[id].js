@@ -24,9 +24,23 @@ export default function RestaurantDetails({ details }) {
           />
         </figure>
         <article className={styles.info}>
+          <Image
+            priority
+            src="/images/locationGreen.svg"
+            height={64}
+            width={64}
+            alt="add icon"
+          />
           <p>{details.address}</p>
           <p>({details.neighborhood})</p>
           <br />
+          <Image
+            priority
+            src="/images/cuisine.svg"
+            height={64}
+            width={64}
+            alt="add icon"
+          />
           <p>
             <span className="bold">
               <span className="green">amazing </span>Cuisine Type:{" "}
@@ -35,12 +49,27 @@ export default function RestaurantDetails({ details }) {
             {details.cuisine_type}
           </p>
           <br />
-          <p className="bold">Operating Hours:</p>
-          <ul>
-            {Object.keys(details.operating_hours).map((key) => {
-              return <li>{`${key} : ${details.operating_hours[key]}`}</li>
-            })}
-          </ul>
+          {details.operating_hours && (
+            <>
+              <Image
+                priority
+                src="/images/hours.svg"
+                height={50}
+                width={50}
+                alt="add icon"
+              />
+              <p className="bold">Operating Hours:</p>
+              <ul>
+                {Object.keys(details.operating_hours).map((key, idx) => {
+                  return (
+                    <li
+                      key={idx}
+                    >{`${key} : ${details.operating_hours[key]}`}</li>
+                  )
+                })}
+              </ul>
+            </>
+          )}
           <Link href="/">
             <a className="green bold back-to-list">
               ← Back to the restaurant list

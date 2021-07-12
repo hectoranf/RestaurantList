@@ -13,6 +13,10 @@ export function getOneRestaurant(id) {
   return handler.get(`/${id}`)
 }
 
+export function createRestaurant(restaurantData) {
+  return handler.post(`/`, restaurantData)
+}
+
 export async function getAllRestaurantsIds() {
   return handler
     .get("/")

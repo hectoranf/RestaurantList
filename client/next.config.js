@@ -13,6 +13,7 @@ module.exports = {
       "c8.alamy.com",
       "i.pinimg.com",
       "video-images.vice.com",
+      "res.cloudinary.com",
     ],
   },
 }
