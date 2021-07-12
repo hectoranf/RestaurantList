@@ -85,7 +85,7 @@ const Home = ({ data }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getAllRestaurants()
     .then((res) => res.data)
     .catch((err) => console.log(err))
