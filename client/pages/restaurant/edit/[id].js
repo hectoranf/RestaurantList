@@ -21,12 +21,6 @@ export default function editRestaurantForm({ restaurantInfo }) {
 
   const router = useRouter()
 
-  // const createNewRestaurant = async (data) => {
-  //   await updateRestaurant()
-  //     .then((res) => router.push("/"))
-  //     .catch((err) => console.log(err))
-  // }
-
   const handleInputChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
