@@ -1,44 +1,31 @@
 import Head from "next/head"
 import Link from "next/link"
-import Layout from "../../components/layout"
-import { createRestaurant } from "../../lib/restaurants"
-import { uploadImage } from "../../lib/files"
+import Layout from "../../../components/layout"
+import {
+  getAllRestaurantsIds,
+  getOneRestaurant,
+  updateRestaurant,
+} from "../../../lib/restaurants"
+import { uploadImage } from "../../../lib/files"
 import React, { useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
 
-export default function newRestaurantForm() {
+export default function editRestaurantForm({ restaurantInfo }) {
   const [state, setState] = useState({
-    name: "",
-    neighborhood: "",
-    address: "",
-    image: "",
-    cuisine_type: "Other",
+    name: restaurantInfo.name,
+    neighborhood: restaurantInfo.neighborhood,
+    address: restaurantInfo.address,
+    cuisine_type: restaurantInfo.cuisine_type,
   })
-
-  const [uploading, setUpload] = useState(false)
 
   const router = useRouter()
 
-  const createNewRestaurant = async (data) => {
-    await axios
-      .post(`http://localhost:5000/api/restaurants/`, data)
-      .then((res) => router.push("/"))
-      .catch((err) => console.log(err))
-  }
-
-  const handleFileUpload = async (e) => {
-    setUpload(true)
-    const uploadData = new FormData()
-    uploadData.append("imageUrl", e.target.files[0])
-    // this.setState({ uploadingActive: true })
-    await uploadImage(uploadData)
-      .then((res) => {
-        setState({ ...state, image: res.data.secure_url })
-        setUpload(false)
-      })
-      .catch((err) => console.log(err))
-  }
+  // const createNewRestaurant = async (data) => {
+  //   await updateRestaurant()
+  //     .then((res) => router.push("/"))
+  //     .catch((err) => console.log(err))
+  // }
 
   const handleInputChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
@@ -46,16 +33,17 @@ export default function newRestaurantForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // createRestaurant(state)
-    if (!uploading) createNewRestaurant(state)
+    updateRestaurant(restaurantInfo._id, state)
+      .then(() => router.push(`/restaurant/${restaurantInfo._id}`))
+      .catch((err) => console.log(err))
   }
 
   return (
     <Layout>
       <Head>
-        <title>New restaurant</title>
+        <title>Edit {restaurantInfo.name}</title>
       </Head>
-      <h1>New restaurant</h1>
+      <h1>Edit {restaurantInfo.name}</h1>
       <form className="form-container" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Restaurant Name: </label>
@@ -75,6 +63,7 @@ export default function newRestaurantForm() {
             className="input"
             name="neighborhood"
             type="text"
+            value={state.neighborhood}
             onChange={handleInputChange}
             required
           />
@@ -85,6 +74,7 @@ export default function newRestaurantForm() {
           <input
             className="input"
             name="address"
+            value={state.address}
             type="text"
             onChange={handleInputChange}
             required
@@ -109,16 +99,7 @@ export default function newRestaurantForm() {
             <option value="Other">Other</option>
           </select>
         </div>
-        <div className="form-group">
-          <label>Image: </label>
-          <input
-            className="input"
-            name="image"
-            type="file"
-            onChange={handleFileUpload}
-            required
-          />
-        </div>
+
         <div>
           <input className="button" type="submit" />
         </div>
@@ -130,4 +111,21 @@ export default function newRestaurantForm() {
       </form>
     </Layout>
   )
+}
+export async function getStaticPaths() {
+  const paths = await getAllRestaurantsIds()
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }) {
+  return await getOneRestaurant(params.id).then((res) => {
+    return {
+      props: {
+        restaurantInfo: res.data,
+      },
+    }
+  })
 }

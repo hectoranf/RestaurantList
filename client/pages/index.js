@@ -66,12 +66,17 @@ const Home = ({ data }) => {
                   {elm.neighborhood}
                 </div>
               </article>
-              <button
-                onClick={() => deleteClick(elm._id)}
-                className={styles.deleteButton}
-              >
-                Delete
-              </button>
+              <div>
+                <Link href={`/restaurant/edit/${elm._id}`}>
+                  <a className={styles.button}>Edit</a>
+                </Link>
+                <button
+                  onClick={() => deleteClick(elm._id)}
+                  className={styles.button}
+                >
+                  Delete
+                </button>
+              </div>
             </article>
           ))}
         </section>
