@@ -9,7 +9,7 @@ export default function Home({ data }) {
 		<div>
 			<Layout>
 				<section>Hello nextjs world</section>
-				<section>
+				<section className='contentContainer'>
 					{data.map((elm) => {
 						return (
 							<article key={elm._id}>
@@ -46,7 +46,6 @@ export default function Home({ data }) {
 						)
 					})}
 				</section>
-				<footer></footer>
 			</Layout>
 		</div>
 	)

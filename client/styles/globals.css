@@ -1,16 +1,38 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	padding: 0;
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	color: #2c393f;
+}
+
+#__next > div {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+footer {
+	background-color: #2c393f;
+	height: 70px;
+	margin-top: auto;
+	color: #ededed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.contentContainer {
+	background-color: palevioletred;
+	max-width: 70em;
+	margin: 0px auto;
 }
