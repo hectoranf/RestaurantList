@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import styles from './layout.module.css'
-import Image from 'next/image'
+import Navbar from './navbar'
 
 export default function Layout({ children }) {
 	return (
@@ -11,9 +10,7 @@ export default function Layout({ children }) {
 				<meta name='description' content='Discover your new favourite restaurants' />
 				<meta name='og:title' content='The Restaurants List' />
 			</Head>
-			<nav className={styles.navbar}>
-				<Image src='/images/logo.svg' height={40} width={300} alt='logo'></Image>
-			</nav>
+			<Navbar />
 			<main>{children}</main>
 			<footer>
 				<p>Developed with Next.js</p>

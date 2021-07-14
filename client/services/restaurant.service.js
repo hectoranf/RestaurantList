@@ -6,10 +6,6 @@ const handler = axios.create({
 	withCredentials: true,
 })
 
-// export function getAllRestaurants() {
-// 	return handler.get('/')
-// }
-
 export const getAllRestaurants = () => {
 	return handler.get('/')
 }
