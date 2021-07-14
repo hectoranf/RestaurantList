@@ -1,6 +1,5 @@
 import Head from 'next/head'
-
-export const siteTitle = 'The Restaurant List'
+import styles from './layout.module.css'
 
 export default function Layout({ children }) {
 	return (
@@ -11,6 +10,9 @@ export default function Layout({ children }) {
 				<meta name='description' content='Discover your new favourite restaurants' />
 				<meta name='og:title' content='The Restaurants List' />
 			</Head>
+			<nav className={styles.navbar}>
+				<p>The restaurant list</p>
+			</nav>
 			<main>{children}</main>
 		</>
 	)
