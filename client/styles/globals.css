@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Montserrat:wght@300;500&display=swap');
 html,
 body {
 	padding: 0;
@@ -32,7 +34,19 @@ a {
 }
 
 .contentContainer {
-	background-color: palevioletred;
 	max-width: 70em;
 	margin: 0px auto;
+	height: auto;
+	padding: 1.5rem;
+}
+
+h1 {
+	font-family: 'merriweather', arial;
+	text-align: center;
+	font-weight: 200;
+	font-size: 2rem;
+}
+
+h3 {
+	margin: 8px 0px;
 }

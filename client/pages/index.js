@@ -3,48 +3,67 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Layout from '../components/layout/layout'
 import { getAllRestaurants } from '../services/restaurant.service'
+import RestaurantCard from '../components/restaurants/restaurant-card'
 
 export default function Home({ data }) {
 	return (
 		<div>
 			<Layout>
-				<section>Hello nextjs world</section>
-				<section className='contentContainer'>
-					{data.map((elm) => {
-						return (
-							<article key={elm._id}>
-								<p>{elm.name}</p>
-							</article>
-						)
-					})}
-					{data.map((elm) => {
-						return (
-							<article key={elm._id}>
-								<p>{elm.name}</p>
-							</article>
-						)
-					})}
-					{data.map((elm) => {
-						return (
-							<article key={elm._id}>
-								<p>{elm.name}</p>
-							</article>
-						)
-					})}
-					{data.map((elm) => {
-						return (
-							<article key={elm._id}>
-								<p>{elm.name}</p>
-							</article>
-						)
-					})}
-					{data.map((elm) => {
-						return (
-							<article key={elm._id}>
-								<p>{elm.name}</p>
-							</article>
-						)
-					})}
+				<section className={styles.hero}>
+					<article>
+						<figure>
+							<Image src='/images/logo.svg' layout='fill' alt='logo' />
+						</figure>
+						<p>
+							Don&apos;t wait any longer.
+							<br /> Discover your new favourite restaurant now!
+						</p>
+					</article>
+				</section>
+
+				<section className={`contentContainer ${styles.features}`}>
+					<h1>Endless possibilities</h1>
+					<div className={styles.featuresCards}>
+						<article>
+							<figure>
+								<Image
+									src='https://res.cloudinary.com/hector/image/upload/v1626306475/restaurantlist/illustration_locations_yfdtio.png'
+									layout='fill'
+									alt='locations map'
+								/>
+							</figure>
+							<p>Find the coolest places around you</p>
+						</article>
+						<article>
+							<figure>
+								<Image
+									src='https://res.cloudinary.com/hector/image/upload/v1626306472/restaurantlist/illustration_chef_qdvpuw.png'
+									layout='fill'
+									alt='locations map'
+								/>
+							</figure>
+							<p>Try new food</p>
+						</article>
+						<article>
+							<figure>
+								<Image
+									src='https://res.cloudinary.com/hector/image/upload/v1626306478/restaurantlist/illustration_dinner_mmgrti.png'
+									layout='fill'
+									alt='locations map'
+								/>
+							</figure>
+							<p>Enjoy with your beloved</p>
+						</article>
+					</div>
+				</section>
+
+				<section className={'contentContainer'}>
+					<h1>Choose your next restaurant</h1>
+					<div className={styles.restaurantsList}>
+						{data.map((elm) => (
+							<RestaurantCard key={elm._id} {...elm} />
+						))}
+					</div>
 				</section>
 			</Layout>
 		</div>
