@@ -4,6 +4,7 @@
 	padding: 5px;
 	display: flex;
 	flex-direction: column;
+	cursor: pointer;
 }
 
 .card figure {

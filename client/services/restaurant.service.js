@@ -9,3 +9,7 @@ const handler = axios.create({
 export const getAllRestaurants = () => {
 	return handler.get('/')
 }
+
+export function getOneRestaurant(id) {
+	return handler.get(`/${id}`)
+}

@@ -7,7 +7,7 @@ import RestaurantCard from '../components/restaurants/restaurant-card'
 
 export default function Home({ data }) {
 	return (
-		<div>
+		<>
 			<Layout>
 				<section className={styles.hero}>
 					<article>
@@ -21,7 +21,7 @@ export default function Home({ data }) {
 					</article>
 				</section>
 
-				<section className={`contentContainer ${styles.features}`}>
+				<section className={`content-container ${styles.features}`}>
 					<h1>Endless possibilities</h1>
 					<div className={styles.featuresCards}>
 						<article>
@@ -39,7 +39,7 @@ export default function Home({ data }) {
 								<Image
 									src='https://res.cloudinary.com/hector/image/upload/v1626306472/restaurantlist/illustration_chef_qdvpuw.png'
 									layout='fill'
-									alt='locations map'
+									alt='Chef cooking'
 								/>
 							</figure>
 							<p>Try new food</p>
@@ -49,7 +49,7 @@ export default function Home({ data }) {
 								<Image
 									src='https://res.cloudinary.com/hector/image/upload/v1626306478/restaurantlist/illustration_dinner_mmgrti.png'
 									layout='fill'
-									alt='locations map'
+									alt='Dinner with friends'
 								/>
 							</figure>
 							<p>Enjoy with your beloved</p>
@@ -57,7 +57,7 @@ export default function Home({ data }) {
 					</div>
 				</section>
 
-				<section className={'contentContainer'}>
+				<section className='content-container'>
 					<h1>Choose your next restaurant</h1>
 					<div className={styles.restaurantsList}>
 						{data.map((elm) => (
@@ -66,7 +66,7 @@ export default function Home({ data }) {
 					</div>
 				</section>
 			</Layout>
-		</div>
+		</>
 	)
 }
 

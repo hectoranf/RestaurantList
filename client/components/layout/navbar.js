@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useRef } from 'react'
+import Link from 'next/link'
 
 export default function Navbar() {
 	const burgerRef = useRef()
@@ -12,9 +13,11 @@ export default function Navbar() {
 
 	return (
 		<nav className='navbar'>
-			<figure className='logo'>
-				<Image src='/images/logo.svg' layout='fill' alt='logo'></Image>
-			</figure>
+			<Link href={'/'} passHref>
+				<figure className='logo'>
+					<Image src='/images/logo.svg' layout='fill' alt='logo'></Image>
+				</figure>
+			</Link>
 			<ul ref={menuRef} className='menu'>
 				<li onClick={() => responsiveMenu()}>login</li>
 				<li onClick={() => responsiveMenu()}>Sign up</li>

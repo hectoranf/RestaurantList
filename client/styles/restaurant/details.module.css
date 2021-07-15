@@ -1,0 +1,54 @@
+.details {
+	display: flex;
+	flex-direction: column;
+}
+
+.details figure {
+	position: relative;
+	width: 90%;
+	height: 300px;
+	margin: auto;
+}
+.details section {
+	width: 90%;
+	padding: 10px 15px;
+}
+
+.details h2 {
+	margin-bottom: 5px;
+}
+
+.small {
+	font-size: 0.9rem;
+	padding: 0;
+	margin: 3px 0;
+}
+
+@media (min-width: 575px) {
+	.details figure {
+		height: 400px;
+	}
+}
+
+@media (min-width: 768px) {
+	.details figure {
+		height: 450px;
+	}
+}
+
+@media (min-width: 992px) {
+	.details {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+	.details figure {
+		position: relative;
+		width: 55%;
+		height: 500px;
+	}
+	.details section {
+		width: 40%;
+	}
+}

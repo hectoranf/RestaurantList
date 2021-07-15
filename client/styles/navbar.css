@@ -18,6 +18,7 @@
 	min-width: 150px;
 	max-width: 280px;
 	height: 100%;
+	cursor: pointer;
 }
 
 .navbar ul {
