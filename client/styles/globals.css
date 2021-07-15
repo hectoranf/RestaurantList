@@ -50,3 +50,51 @@ h1 {
 h3 {
 	margin: 8px 0px;
 }
+
+/* Forms */
+.form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form-group {
+	margin: 15px;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.form-group label {
+	margin-left: 15px;
+	padding: 10px;
+}
+
+.form-group input {
+	padding: 10px;
+	border: 0;
+	border-bottom: 1px solid #2c393f;
+	background: #fff;
+	margin-left: 15px;
+	color: #2c393f;
+}
+
+.form-group input:focus {
+	border: 0;
+	outline: none;
+	border-bottom: 1px solid #00c7c7;
+}
+
+@media (min-width: 575px) {
+	.form-group {
+	}
+}
+@media (min-width: 768px) {
+	.form-group {
+		margin: 15px;
+		padding: 5px;
+		display: flex;
+		flex-direction: row;
+	}
+}

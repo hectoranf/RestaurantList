@@ -1,0 +1,24 @@
+.wraper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.wraper figure {
+	position: relative;
+	width: 300px;
+	height: 300px;
+	margin: 0;
+}
+
+@media (min-width: 575px) {
+	.wraper {
+		flex-direction: row;
+	}
+	.inverse {
+		flex-direction: row-reverse;
+	}
+}
+@media (min-width: 768px) {
+}

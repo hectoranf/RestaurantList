@@ -19,8 +19,12 @@ export default function Navbar() {
 				</figure>
 			</Link>
 			<ul ref={menuRef} className='menu'>
-				<li onClick={() => responsiveMenu()}>login</li>
-				<li onClick={() => responsiveMenu()}>Sign up</li>
+				<li onClick={() => responsiveMenu()}>
+					<Link href={'/login'}>login</Link>
+				</li>
+				<li onClick={() => responsiveMenu()}>
+					<Link href={'/signup'}>sign up</Link>
+				</li>
 			</ul>
 			<div ref={burgerRef} onClick={() => responsiveMenu()} className='hamburger'>
 				<span className='bar'></span>
