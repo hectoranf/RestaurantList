@@ -3,9 +3,9 @@ const localStrategy = require('passport-local').Strategy
 const User = require('../models/user.model')
 const bcrypt = require('bcrypt')
 const bcryptSalt = 10
+const { check, validationResult } = require('express-validator')
 
 const JWTstrategy = require('passport-jwt').Strategy
-const ExtractJWT = require('passport-jwt').ExtractJwt
 
 module.exports = (app) => {
 	passport.use(
@@ -16,7 +16,7 @@ module.exports = (app) => {
 
 			User.create({ username, password: hashPass })
 				.then((user) => next(null, user))
-				.catch((err) => next(new Error(err)))
+				.catch((err) => next(null, false, { message: 'Error creating user' }))
 		})
 	)
 

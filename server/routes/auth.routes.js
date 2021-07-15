@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const passport = require('passport')
+const { check, validationResult } = require('express-validator')
 
 const jwt = require('jsonwebtoken')
 
@@ -9,12 +10,37 @@ const bcryptSalt = 10
 
 router.post(
 	'/signup',
-	passport.authenticate('signup', { session: false }),
-	async (req, res, next) => {
-		res.json({
-			message: 'Signup successful',
-			user: req.user,
-		})
+	[
+		check('username')
+			.isLength({ min: 5 })
+			.withMessage('Name should have min 5 characters.')
+			.custom((value) => {
+				return User.findOne({ username: value }).then((user) => {
+					if (user) {
+						return Promise.reject('The username already exists')
+					}
+				})
+			}),
+		check('password').isLength({ min: 4 }).withMessage('Password min 4 characters'),
+	],
+	(req, res, next) => {
+		const passCheck = validationResult(req)
+
+		if (!passCheck.isEmpty()) {
+			res.status(400).json({ message: passCheck.errors })
+			return
+		}
+
+		const { username, password } = req.body
+
+		const salt = bcrypt.genSaltSync(bcryptSalt)
+		const hashPass = bcrypt.hashSync(password, salt)
+
+		User.create({ username, password: hashPass })
+			.then((user) => res.status(200).json({ message: 'User saved' }))
+			.catch((err) =>
+				res.status(500).json({ message: 'Error saving user to DB. Please try again.' })
+			)
 	}
 )
 
