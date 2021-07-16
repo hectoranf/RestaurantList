@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import styles from '../styles/forms/auth.module.css'
 import { login } from '../services/auth.service'
-import axios from 'axios'
 
 export default function Login() {
 	const router = useRouter()
@@ -21,12 +20,7 @@ export default function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const { username, password } = state
-		const handler = axios.create({
-			baseURL: `https://restaurantlist-api.herokuapp.com/api`,
-			withCredentials: true,
-		})
-		handler
-			.post('/login', { username, password })
+		login({ username, password })
 			.then(() => {
 				router.push('/')
 			})
@@ -38,6 +32,7 @@ export default function Login() {
 			<section className='content-container'>
 				<div className={`${styles.wraper} ${styles.inverse}`}>
 					<form className='form-container' onSubmit={handleSubmit}>
+						<h1>Sign in</h1>
 						<div className='form-group'>
 							<label htmlFor='username'>Username: </label>
 							<input

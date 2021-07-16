@@ -33,6 +33,7 @@ export default function Signup() {
 			<section className='content-container'>
 				<div className={styles.wraper}>
 					<form className='form-container' onSubmit={handleSubmit}>
+						<h1>Register</h1>
 						<div className='form-group'>
 							<label htmlFor='username'>Username: </label>
 							<input

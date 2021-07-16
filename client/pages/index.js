@@ -7,14 +7,15 @@ import RestaurantCard from '../components/restaurants/restaurant-card'
 import { useEffect } from 'react'
 import { useAppContext } from '../lib/context'
 import { getTheUser } from '../services/user.service'
+import Link from 'next/link'
 
 export default function Home({ data }) {
 	const { authState, setAuth } = useAppContext()
 	useEffect(() => {
 		getTheUser()
-			.then((res) => setAuth(true))
-			.catch((err) => setAuth(false))
-	})
+			.then((res) => setAuth({ isLoggedIn: true, user: res.data.user }))
+			.catch((err) => setAuth({ isLoggedIn: false, user: null }))
+	}, [])
 
 	return (
 		<>
@@ -69,6 +70,11 @@ export default function Home({ data }) {
 
 				<section className='content-container'>
 					<h1>Choose your next restaurant</h1>
+					{authState.isLoggedIn && (
+						<Link href='/restaurant/new'>
+							<button className={styles.addButton}>Add new restaurant</button>
+						</Link>
+					)}
 					<div className={styles.restaurantsList}>
 						{data.map((elm) => (
 							<RestaurantCard key={elm._id} {...elm} />

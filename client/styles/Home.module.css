@@ -70,10 +70,17 @@
 
 .restaurantsList {
 	width: 100%;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
+}
+
+.addButton {
+	display: block;
+	margin: auto;
+	cursor: pointer;
 }
 
 /* medium */
@@ -112,7 +119,6 @@
 	}
 
 	.restaurantsList {
-		margin-top: 50px;
 		flex-direction: row;
 		justify-content: space-evenly;
 		align-items: flex-start;

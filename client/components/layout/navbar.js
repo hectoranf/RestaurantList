@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { useAppContext } from '../../lib/context'
 import { useRouter } from 'next/router'
 import { logout } from '../../services/auth.service'
+import Router from 'next/router'
 
 export default function Navbar() {
-	const { authState } = useAppContext() //Context API
+	const { authState, setAuth } = useAppContext()
+
 	const router = useRouter()
 
 	const burgerRef = useRef()
@@ -23,7 +25,7 @@ export default function Navbar() {
 
 		logout()
 			.then(() => {
-				router.push('/')
+				Router.reload(window.location.pathname)
 			})
 			.catch((err) => console.log(err))
 	}
@@ -36,11 +38,11 @@ export default function Navbar() {
 				</figure>
 			</Link>
 
-			{authState ? (
+			{authState.isLoggedIn ? (
 				<ul ref={menuRef} className='menu'>
-					{/* <li onClick={() => responsiveMenu()}>
-						<Link href={'/login'}>login</Link>
-					</li> */}
+					<li onClick={() => responsiveMenu()}>
+						<Link href={`/profile/${authState.user.username}`}>profile</Link>
+					</li>
 					<li onClick={() => handleLogout()}>logout</li>
 				</ul>
 			) : (

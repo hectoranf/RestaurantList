@@ -5,7 +5,7 @@ export const AppContext = createContext(null)
 
 //Provider
 export const AppContextProvider = ({ children }) => {
-	const [authState, setAuth] = React.useState(false)
+	const [authState, setAuth] = React.useState({ isLoggedIn: false, user: null })
 
 	React.useEffect(() => {}, [])
 

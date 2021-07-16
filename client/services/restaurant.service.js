@@ -12,3 +12,15 @@ export const getAllRestaurants = () => {
 export function getOneRestaurant(id) {
 	return handler.get(`/${id}`)
 }
+
+export function createRestaurant(restaurantData) {
+	return handler.post(`/`, restaurantData)
+}
+
+export function updateRestaurant(id, restaurantData) {
+	return handler.put(`/${id}`, restaurantData)
+}
+
+export function deleteRestaurant(id) {
+	return handler.delete(`/${id}`)
+}
