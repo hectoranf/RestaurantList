@@ -12,6 +12,14 @@
 	margin: 0;
 }
 
+.errorMsg {
+	max-width: 100%;
+	color: #c70000;
+	font-size: 0.7rem;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
 @media (min-width: 575px) {
 	.wraper {
 		flex-direction: row;

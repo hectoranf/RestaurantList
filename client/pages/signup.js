@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Layout from '../components/layout/layout'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import styles from '../styles/forms/auth.module.css'
 import Image from 'next/image'
+import { signup } from '../services/auth.service'
 
 export default function Signup() {
 	const router = useRouter()
@@ -12,6 +12,7 @@ export default function Signup() {
 		username: '',
 		password: '',
 	})
+	const [errorMsg, setMsg] = useState('')
 
 	const handleInputChange = (e) => {
 		setState({ ...state, [e.target.name]: e.target.value })
@@ -20,12 +21,11 @@ export default function Signup() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		axios
-			.post('https://restaurantlist-api.herokuapp.com/api/signup', state)
-			.then((res) => {
+		signup(state)
+			.then(() => {
 				router.push('/login')
 			})
-			.catch((err) => console.log(err.response.data.message[0].msg))
+			.catch((err) => setMsg(err.response.data.message[0].msg))
 	}
 
 	return (
@@ -57,8 +57,13 @@ export default function Signup() {
 								required
 							/>
 						</div>
+
+						<p className={styles.errorMsg}>{errorMsg}</p>
+
 						<div>
-							<input className='button' type='submit' />
+							<button className='form-button' type='submit'>
+								Sign up
+							</button>
 						</div>
 					</form>
 					<figure>

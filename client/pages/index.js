@@ -4,8 +4,18 @@ import styles from '../styles/Home.module.css'
 import Layout from '../components/layout/layout'
 import { getAllRestaurants } from '../services/restaurant.service'
 import RestaurantCard from '../components/restaurants/restaurant-card'
+import { useEffect } from 'react'
+import { useAppContext } from '../lib/context'
+import { getTheUser } from '../services/user.service'
 
 export default function Home({ data }) {
+	const { authState, setAuth } = useAppContext()
+	useEffect(() => {
+		getTheUser()
+			.then((res) => setAuth(true))
+			.catch((err) => setAuth(false))
+	})
+
 	return (
 		<>
 			<Layout>

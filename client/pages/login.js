@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import Layout from '../components/layout/layout'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-
 import styles from '../styles/forms/auth.module.css'
-import axios from 'axios'
+import { login } from '../services/auth.service'
 
 export default function Login() {
 	const router = useRouter()
@@ -20,13 +19,9 @@ export default function Login() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-
-		axios
-			.post('https://restaurantlist-api.herokuapp.com/api/login', state, {
-				withCredentials: true,
-			})
-			.then((res) => {
-				console.log(res)
+		const { username, password } = state
+		login({ username, password })
+			.then(() => {
 				router.push('/')
 			})
 			.catch((err) => console.log(err))
@@ -62,7 +57,9 @@ export default function Login() {
 							/>
 						</div>
 						<div>
-							<input className='button' type='submit' />
+							<button className='form-button' type='submit'>
+								Log in
+							</button>
 						</div>
 					</form>
 					<figure>
