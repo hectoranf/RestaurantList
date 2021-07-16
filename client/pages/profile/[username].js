@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 export default function Profile({ data }) {
 	const { authState, setAuth } = useAppContext()
-
 	return (
 		<>
 			<Layout>
@@ -12,6 +11,7 @@ export default function Profile({ data }) {
 					{authState.user ? (
 						<>
 							<h1>Wellcome {authState.user.username}</h1>
+							<h2>{authState.user.favouriteRestaurants.length}</h2>
 						</>
 					) : (
 						<>

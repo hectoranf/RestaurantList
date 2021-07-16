@@ -11,11 +11,16 @@ import Link from 'next/link'
 
 export default function Home({ data }) {
 	const { authState, setAuth } = useAppContext()
+
 	useEffect(() => {
 		getTheUser()
-			.then((res) => setAuth({ isLoggedIn: true, user: res.data.user }))
+			.then((res) => {
+				return setAuth({ isLoggedIn: true, user: res.data.user })
+			})
 			.catch((err) => setAuth({ isLoggedIn: false, user: null }))
 	}, [])
+
+	useEffect(() => {}, [authState])
 
 	return (
 		<>

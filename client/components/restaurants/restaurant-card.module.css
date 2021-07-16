@@ -36,7 +36,30 @@
 	height: auto;
 	filter: grayscale(1);
 }
+
 .icon:hover {
+	filter: grayscale(0);
+}
+
+.fav {
+	padding: 6px;
+	margin: 0;
+	height: auto;
+	filter: grayscale(0);
+}
+
+.fav:hover {
+	filter: grayscale(1);
+}
+
+.unfav {
+	padding: 6px;
+	margin: 0;
+	height: auto;
+	filter: grayscale(1);
+}
+
+.unfav:hover {
 	filter: grayscale(0);
 }
 
