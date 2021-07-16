@@ -73,8 +73,8 @@ router.post('/login', async (req, res, next) => {
 				res.cookie('jwt', token, {
 					httpOnly: true,
 					maxAge: 24 * 60 * 60 * 1000,
-					sameSite: 'none',
-					secure: true,
+					sameSite: 'strict',
+					// secure: true,
 				})
 
 				res.send({
@@ -88,7 +88,7 @@ router.post('/login', async (req, res, next) => {
 })
 
 router.post('/logout', (req, res) => {
-	res.cookie('jwt', '', { httpOnly: true, maxAge: 0, sameSite: 'none', secure: true })
+	res.cookie('jwt', '', { httpOnly: true, maxAge: 0, sameSite: 'strict' })
 
 	res.send({
 		message: 'You are logged out',
