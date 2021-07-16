@@ -1,10 +1,10 @@
 const router = require('express').Router()
 const User = require('../models/user.model')
 
-router.get('/profile', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	const { _id, username, favouriteRestaurants, role } = req.user
 	res.json({
-		message: 'You made it to the secure route',
+		msg: 'You made it to the secure route',
 		user: { _id, username, favouriteRestaurants, role },
 	})
 })

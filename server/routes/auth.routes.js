@@ -21,7 +21,13 @@ router.post(
 					}
 				})
 			}),
-		check('password').isLength({ min: 4 }).withMessage('Password min 4 characters'),
+		check('password')
+			.isLength({ min: 4 })
+			.withMessage('Password min 4 characters')
+			.matches(/\d/)
+			.withMessage('Password must contain a number')
+			.matches(/\D/)
+			.withMessage('Password must contain a letter'),
 	],
 	(req, res, next) => {
 		const passCheck = validationResult(req)
@@ -60,14 +66,14 @@ router.post('/login', async (req, res, next) => {
 			req.login(user, { session: false }, async (err) => {
 				if (err) return next(err)
 
-				// const body = { _id: user._id, username: user.username, role: user.role }
+				const body = { _id: user._id, username: user.username, role: user.role }
 
-				// const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
+				const token = jwt.sign({ user: body }, process.env.TOKEN_SECRET)
 
-				// res.cookie('jwt', token, {
-				// 	httpOnly: true,
-				// 	maxAge: 24 * 60 * 60 * 1000, // 1 day
-				// })
+				res.cookie('jwt', token, {
+					httpOnly: true,
+					maxAge: 24 * 60 * 60 * 1000, // 1 day
+				})
 
 				res.send({
 					message: 'You are logged in',

@@ -34,7 +34,6 @@ module.exports = (app) => {
 
 	passport.use(
 		new JWTstrategy(opts, (jwt_payload, next) => {
-			console.log(jwt_payload)
 			User.findOne({ _id: jwt_payload.user._id }, (err, user) => {
 				if (err) {
 					return next(err, false)
@@ -42,7 +41,7 @@ module.exports = (app) => {
 				if (user) {
 					next(null, user)
 				} else {
-					next(null, false)
+					next(null, false, { msg: 'unauthenticated' })
 				}
 			})
 		})
