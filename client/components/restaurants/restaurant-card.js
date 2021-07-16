@@ -50,6 +50,7 @@ export default function RestaurantCard(props) {
 			.catch((err) => console.log(err))
 	}
 
+	//Delete CRUD
 	const deleteClick = async (id) => {
 		deleteRestaurant(id)
 			.then(() => Router.reload(window.location.pathname))

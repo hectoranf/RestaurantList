@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 const handler = axios.create({
-	baseURL: `http://localhost:5000/api`,
-	// baseURL: `https://restaurantlist-api.herokuapp.com/api`,
+	baseURL: `https://restaurantlist-api.herokuapp.com/api`,
 	withCredentials: true,
 })
 
