@@ -20,7 +20,12 @@ export default function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const { username, password } = state
-		login({ username, password })
+		const handler = axios.create({
+			baseURL: `https://restaurantlist-api.herokuapp.com/api`,
+			withCredentials: true,
+		})
+		handler
+			.post('/login', { username, password })
 			.then(() => {
 				router.push('/')
 			})
