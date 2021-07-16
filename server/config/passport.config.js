@@ -9,29 +9,18 @@ const JWTstrategy = require('passport-jwt').Strategy
 
 module.exports = (app) => {
 	passport.use(
-		'signup',
-		new localStrategy((username, password, next) => {
-			const salt = bcrypt.genSaltSync(bcryptSalt)
-			const hashPass = bcrypt.hashSync(password, salt)
-
-			User.create({ username, password: hashPass })
-				.then((user) => next(null, user))
-				.catch((err) => next(null, false, { message: 'Error creating user' }))
-		})
-	)
-
-	passport.use(
 		'login',
 		new localStrategy((username, password, next) => {
 			User.findOne({ username })
 				.then((user) => {
 					if (!user) return next(null, false, { message: 'User not found' })
+
 					if (!bcrypt.compareSync(password, user.password))
 						return next(null, false, { message: 'Wrong Password' })
 
-					return next(null, user, { message: 'Logged in Successfully' })
+					return next(null, user)
 				})
-				.catch((err) => next(new Error(err)))
+				.catch((err) => res.status(500).json(err))
 		})
 	)
 

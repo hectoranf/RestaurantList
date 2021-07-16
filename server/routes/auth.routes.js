@@ -47,22 +47,27 @@ router.post(
 router.post('/login', async (req, res, next) => {
 	passport.authenticate('login', async (err, user, info) => {
 		try {
-			if (err || !user) {
-				const error = new Error('An error occurred.')
-				return next(error)
+			if (err) {
+				res.status(500).json({ message: 'Error authenticating user' })
+				return
+			}
+
+			if (!user) {
+				res.status(401).json(info)
+				return
 			}
 
 			req.login(user, { session: false }, async (err) => {
 				if (err) return next(err)
 
-				const body = { _id: user._id, username: user.username, role: user.role }
+				// const body = { _id: user._id, username: user.username, role: user.role }
 
-				const token = jwt.sign({ user: body }, process.env.TOKEN_SECRET)
+				// const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
 
-				res.cookie('jwt', token, {
-					httpOnly: true,
-					maxAge: 24 * 60 * 60 * 1000, // 1 day
-				})
+				// res.cookie('jwt', token, {
+				// 	httpOnly: true,
+				// 	maxAge: 24 * 60 * 60 * 1000, // 1 day
+				// })
 
 				res.send({
 					message: 'You are logged in',
