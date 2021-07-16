@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import styles from '../styles/forms/auth.module.css'
 import { login } from '../services/auth.service'
+import axios from 'axios'
 
 export default function Login() {
 	const router = useRouter()
